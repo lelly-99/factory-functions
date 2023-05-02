@@ -1,14 +1,14 @@
-describe ("calculateBill", function(){
+describe ("Calculate Bill", function(){
     //test for string input
     describe ("getStringInput", function (){
-        it("should  be able to set the string entered", function(){
+        it('should  be able to set the entered string "call, sms, call, sms"', function(){
             let billOne = calculateBill();
             billOne.setStringInput("call, sms, call, sms");
             assert.equal("call, sms, call, sms", billOne.getStringInput())
         })
     })
     //test for split string 
-    describe ("getSplitString", function(){
+   describe ("getSplitString", function(){
         it("should  be able to split the string entered by user", function(){
             let billOne = calculateBill();
             billOne.setStringInput("call, call, call, sms");

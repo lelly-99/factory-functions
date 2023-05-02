@@ -2,8 +2,6 @@ function calculateBill (){
     //string input
     var stringInput;
     var splitString;
-    var call = 2.75;
-    var sms = 0.75;
 
     // get the text from the textarea in the DOM
     function setStringInput(string){
