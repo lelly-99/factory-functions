@@ -65,7 +65,18 @@ function settingsBill(){
         return totalCallCost + totalSmsCost;
     }
 
-
+    //get warning 
+    function addWarningClass(){
+        if(getTotalCost() >= getWarningLevel()){
+            return "warning"
+        }
+    }
+    //get critical 
+    function addDangerClass(){
+        if(getTotalCost() >= getCriticalLevel()){
+            return "danger"
+        }
+    }
     //return all functions
     return {
         setCallCost,
@@ -81,5 +92,7 @@ function settingsBill(){
         getTotalCallCost,
         getTotalSmsCost,
         getTotalCost,
+        addWarningClass,
+        addDangerClass,
     }
 }
