@@ -26,7 +26,7 @@ describe ("Calculate Bill", function(){
     })
     //test for adding classes
     describe ("addClasses", function(){
-        it("should add danger for total starting from 20 and above", function(){
+        it("should add warning for total starting from 20 and above", function(){
             let billOne = calculateBill();
             billOne.setStringInput("call, call, call, call, call, call, call, call, sms, sms");
             billOne.getSplitString();
@@ -43,7 +43,7 @@ describe ("Calculate Bill", function(){
     })
     //test for removing classes
     describe ("removeClasses", function(){
-        it("should remove danger for total below 20", function(){
+        it("should remove warning for total below 20", function(){
             let billOne = calculateBill();
             billOne.setStringInput("call, call, call, call, sms, sms");
             billOne.getSplitString();
