@@ -33,13 +33,13 @@ function textBill(){
     }
     //add classes
     function addWarningClass(){
-        if(getTotal() >= 20){
+        if(getTotal() >= 30){
             return "warning"
         }
     }
 
     function addCriticalClass(){
-        if(getTotal() >= 30){
+        if(getTotal() >= 50){
             return "danger"
         }
     }

@@ -49,7 +49,7 @@ describe ("Text Bill widget", function (){
     })
 
     describe ("add warning and critical classes", function (){
-        it('should able able to add the class name "warning" when total is from 20 and above', function(){
+        it('should able able to add the class name "warning" when total is 30 and above', function(){
             let billOne = textBill();
 
             billOne.setStringInput("call");
@@ -57,6 +57,13 @@ describe ("Text Bill widget", function (){
 
             billOne.useCall();
             billOne.useCall();
+            billOne.useCall();
+            billOne.useCall();
+            billOne.useCall();
+            billOne.useSms();
+            billOne.useSms();
+            billOne.useSms();
+            billOne.useSms();
             billOne.useCall();
             billOne.useCall();
             billOne.useCall();
@@ -72,7 +79,7 @@ describe ("Text Bill widget", function (){
             assert.equal("warning", billOne.addWarningClass())
         })
 
-        it('should able able to add the class name "danger" when total is from 30 and above', function(){
+        it('should able able to add the class name "danger" when total is 50 and above', function(){
             let billOne = textBill();
 
             billOne.setStringInput("call");
@@ -84,6 +91,17 @@ describe ("Text Bill widget", function (){
             billOne.useCall();
             billOne.useCall();
             billOne.useSms();
+            billOne.useSms();
+            billOne.useSms();
+            billOne.useSms();
+            billOne.useCall();
+            billOne.useCall();
+            billOne.useCall();
+            billOne.useSms();
+            billOne.useSms();
+            billOne.useSms();
+            billOne.useCall();
+            billOne.useCall();
             billOne.useSms();
             billOne.useSms();
             billOne.useSms();
