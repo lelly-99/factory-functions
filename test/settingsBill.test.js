@@ -91,8 +91,9 @@ describe ("Bill with settings", function(){
             it("should  be able to use the call cost for 2 calls at 2.75 each", function(){
                 let callCostOne = settingsBill();
     
-                callCostOne.setCallCost(2.75)
-               
+                callCostOne.setCallCost(2.75);
+                callCostOne.setCriticalLevel(10)
+
                 callCostOne.useCall();
                 callCostOne.useCall();
     
@@ -103,6 +104,7 @@ describe ("Bill with settings", function(){
                 let callCostTwo = settingsBill();
     
                 callCostTwo.setCallCost(1.75)
+                callCostTwo.setCriticalLevel(10)
                
                 callCostTwo.useCall();
                 callCostTwo.useCall();
@@ -115,6 +117,7 @@ describe ("Bill with settings", function(){
                 let callCostThree = settingsBill();
     
                 callCostThree.setCallCost(2.50)
+                callCostThree.setCriticalLevel(15)
                
                 callCostThree.useCall();
                 callCostThree.useCall();
@@ -130,6 +133,7 @@ describe ("Bill with settings", function(){
                 let smsCostOne = settingsBill();
     
                 smsCostOne.setSmsCost(0.75);
+                smsCostOne.setCriticalLevel(5)
                
                 smsCostOne.useSms();
                 smsCostOne.useSms();
@@ -140,7 +144,8 @@ describe ("Bill with settings", function(){
             it("should  be able to use the sms cost for 3 smses at 0.50 each", function(){
                 let smsCostTwo = settingsBill();
     
-                smsCostTwo.setSmsCost(0.50)
+                smsCostTwo.setSmsCost(0.50);
+                smsCostTwo.setCriticalLevel(5);
                
                 smsCostTwo.useSms();
                 smsCostTwo.useSms();
@@ -153,6 +158,7 @@ describe ("Bill with settings", function(){
                 let smsCostThree = settingsBill();
     
                 smsCostThree.setSmsCost(0.25)
+                smsCostThree.setCriticalLevel(5)
                
                 smsCostThree.useSms();
                 smsCostThree.useSms();
@@ -169,6 +175,7 @@ describe ("Bill with settings", function(){
     
                 totalCostOne.setSmsCost(0.75);
                 totalCostOne.setCallCost(2.75)
+                totalCostOne.setCriticalLevel(15)
                
                 totalCostOne.useSms();
                 totalCostOne.useSms();
@@ -183,6 +190,7 @@ describe ("Bill with settings", function(){
     
                 totalCostTwo.setSmsCost(0.75);
                 totalCostTwo.setCallCost(2.75)
+                totalCostTwo.setCriticalLevel(16)
                
                 totalCostTwo.useSms();
                 totalCostTwo.useSms();
@@ -198,7 +206,8 @@ describe ("Bill with settings", function(){
                 let totalCostThree = settingsBill();
     
                 totalCostThree.setSmsCost(0.35);
-                totalCostThree.setCallCost(2.25)
+                totalCostThree.setCallCost(2.25);
+                totalCostThree.setCriticalLevel(17);
                
                 totalCostThree.useSms();
                 totalCostThree.useSms();
@@ -215,7 +224,7 @@ describe ("Bill with settings", function(){
     
     })
     //warning and critical level
-    describe('add and remove warning and critical classes', function(){
+    describe('add warning and critical classes', function(){
         //test for warning class
         describe("addWarningClass", function(){
             it('it should return the class name "warning" when total of 10 is reached', function(){
@@ -224,6 +233,7 @@ describe ("Bill with settings", function(){
                 warningClassOne.setCallCost(2.75);
                 warningClassOne.setSmsCost(0.75);
                 warningClassOne.setWarningLevel(10);
+                warningClassOne.setCriticalLevel(15)
                
     
                 warningClassOne.useCall();
@@ -242,6 +252,7 @@ describe ("Bill with settings", function(){
                 warningClassOne.setCallCost(1.95);
                 warningClassOne.setSmsCost(0.85);
                 warningClassOne.setWarningLevel(15);
+                warningClassOne.setCriticalLevel(20)
                
     
                 warningClassOne.useCall();
@@ -264,6 +275,7 @@ describe ("Bill with settings", function(){
                 warningClassOne.setCallCost(2.45);
                 warningClassOne.setSmsCost(1.85);
                 warningClassOne.setWarningLevel(20);
+                warningClassOne.setCriticalLevel(30);
                
     
                 warningClassOne.useCall();
@@ -358,6 +370,102 @@ describe ("Bill with settings", function(){
                 
     
                 assert.equal('danger', criticalClassOne.addDangerClass())
+            })
+        })
+        describe("adding both classes as once", function(){
+            it('it should return the class name "warning" and "danger" when total of 10 and 15 have been reached respectively', function(){
+                let bothClassesOne = settingsBill()
+    
+                bothClassesOne.setCallCost(2.75);
+                bothClassesOne.setSmsCost(0.75);
+                bothClassesOne.setWarningLevel(10)
+                bothClassesOne.setCriticalLevel(15);
+               
+    
+                bothClassesOne.useCall();
+                bothClassesOne.useCall();
+                bothClassesOne.useCall();
+                bothClassesOne.useSms();
+                bothClassesOne.useSms();
+                bothClassesOne.useSms();
+                bothClassesOne.useCall();
+                bothClassesOne.useCall();
+                bothClassesOne.useCall();
+                bothClassesOne.useSms();
+                bothClassesOne.useSms();
+                bothClassesOne.useSms();
+                
+
+                assert.equal('warning', bothClassesOne.addWarningClass())
+                assert.equal('danger', bothClassesOne.addDangerClass())
+            })
+
+            it('it should return the class name "warning" and "danger" when total of 15 and 25 have been reached respectively', function(){
+                let bothClassesTwo = settingsBill()
+    
+                bothClassesTwo.setCallCost(2.75);
+                bothClassesTwo.setSmsCost(0.75);
+                bothClassesTwo.setWarningLevel(15)
+                bothClassesTwo.setCriticalLevel(25);
+               
+    
+                bothClassesTwo.useCall();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useSms();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useSms();
+                bothClassesTwo.useSms();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useSms();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useCall();
+                bothClassesTwo.useSms();
+                bothClassesTwo.useSms();
+                
+                assert.equal('warning', bothClassesTwo.addWarningClass())
+                assert.equal('danger', bothClassesTwo.addDangerClass())
+            })
+
+            it('it should return the class name "warning" and "danger" when total of 25 and 35 have been reached respectively', function(){
+                let bothClassesThree = settingsBill()
+    
+                bothClassesThree.setCallCost(2.75);
+                bothClassesThree.setSmsCost(0.75);
+                bothClassesThree.setWarningLevel(25)
+                bothClassesThree.setCriticalLevel(35);
+               
+    
+                bothClassesThree.useCall();
+                bothClassesThree.useCall();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useCall();
+                bothClassesThree.useCall();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useCall();
+                bothClassesThree.useCall();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useCall();
+                bothClassesThree.useCall();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useCall();
+                bothClassesThree.useCall();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                bothClassesThree.useSms();
+                
+                assert.equal('warning', bothClassesThree.addWarningClass())
+                assert.equal('danger', bothClassesThree.addDangerClass())
             })
         })
     })

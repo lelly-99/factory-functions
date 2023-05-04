@@ -45,11 +45,15 @@ function settingsBill(){
     
     //use call values
     function useCall(){
-        totalCallCost += callInput;
+        if(!critcalLevelIsReached()){
+            totalCallCost += callInput;
+        }
     }
     //use sms values
     function useSms(){
-        totalSmsCost += smsInput;
+        if(!critcalLevelIsReached()){
+            totalSmsCost += smsInput;
+        }
     }
     //get total calls cost
     function getTotalCallCost(){
@@ -65,6 +69,10 @@ function settingsBill(){
         return totalCallCost + totalSmsCost;
     }
 
+    //critcal level reached
+    function critcalLevelIsReached(){
+        return getTotalCost() >= getCriticalLevel()
+    }
     //get warning 
     function addWarningClass(){
         if(getTotalCost() >= getWarningLevel()){
@@ -73,7 +81,7 @@ function settingsBill(){
     }
     //get critical 
     function addDangerClass(){
-        if(getTotalCost() >= getCriticalLevel()){
+        if(critcalLevelIsReached()){
             return "danger"
         }
     }
@@ -94,5 +102,6 @@ function settingsBill(){
         getTotalCost,
         addWarningClass,
         addDangerClass,
+        critcalLevelIsReached,
     }
 }
