@@ -2,6 +2,8 @@ function calculateBill (){
     //string input
     var stringInput;
     var splitString;
+    var call = 0;
+    var sms = 0;
 
     // get the text from the textarea in the DOM
     function setStringInput(string){
@@ -18,15 +20,15 @@ function calculateBill (){
     }
     //get total based on string input
     function getTotal(){
-        let total = 0
         for(let i = 0; i < splitString.length; i++){
             if(splitString[i].trim() === "call"){
-                total += 2.75
+                call += 2.75
             }
             else if(splitString[i].trim === "sms"){
-                total += 0.75
+                call += 0.75
             }
         }
+        let total = call + sms;
         return total.toFixed(2);
     }
 
