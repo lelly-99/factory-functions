@@ -372,7 +372,8 @@ describe ("Bill with settings", function(){
                 assert.equal('danger', criticalClassOne.addDangerClass())
             })
         })
-        describe("adding both classes as once", function(){
+        //both classes added
+        describe("adding both classes at once", function(){
             it('it should return the class name "warning" and "danger" when total of 10 and 15 have been reached respectively', function(){
                 let bothClassesOne = settingsBill()
     
@@ -466,6 +467,90 @@ describe ("Bill with settings", function(){
                 
                 assert.equal('warning', bothClassesThree.addWarningClass())
                 assert.equal('danger', bothClassesThree.addDangerClass())
+            })
+        })
+        describe('stop total cost when critical is reached', function(){
+            it('should stop adding total cost when critial level 10 is reached', function(){
+                var stopTotalOne = settingsBill()
+
+                stopTotalOne.setCallCost(2.75);
+                stopTotalOne.setSmsCost(0.75);
+                stopTotalOne.setWarningLevel(5)
+                stopTotalOne.setCriticalLevel(10);
+
+
+                stopTotalOne.useCall();
+                stopTotalOne.useCall();
+                stopTotalOne.useSms();
+                stopTotalOne.useSms();
+                stopTotalOne.useCall();
+                stopTotalOne.useSms();
+
+                assert.equal(10.5, stopTotalOne.getTotalCost());
+                assert.equal('danger', stopTotalOne.addDangerClass());
+                assert.equal('warning', stopTotalOne.addWarningClass());
+            })
+
+            it('should stop adding total cost when critial level 15 is reached', function(){
+                var stopTotalTwo = settingsBill()
+
+                stopTotalTwo.setCallCost(2.75);
+                stopTotalTwo.setSmsCost(0.75);
+                stopTotalTwo.setWarningLevel(10);
+                stopTotalTwo.setCriticalLevel(15);
+
+
+                stopTotalTwo.useCall();
+                stopTotalTwo.useCall();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useCall();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useCall();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useSms();
+                stopTotalTwo.useCall();
+
+                assert.equal(15.5, stopTotalTwo.getTotalCost());
+                assert.equal('danger', stopTotalTwo.addDangerClass());
+                assert.equal('warning', stopTotalTwo.addWarningClass());
+            })
+
+            it('should stop adding total cost when critial level 25 is reached', function(){
+                var stopTotalThree = settingsBill()
+
+                stopTotalThree.setCallCost(2.75);
+                stopTotalThree.setSmsCost(0.75);
+                stopTotalThree.setWarningLevel(15);
+                stopTotalThree.setCriticalLevel(25);
+
+
+                stopTotalThree.useCall();
+                stopTotalThree.useCall();
+                stopTotalThree.useSms();
+                stopTotalThree.useSms();
+                stopTotalThree.useCall();
+                stopTotalThree.useSms();
+                stopTotalThree.useSms();
+                stopTotalThree.useSms();
+                stopTotalThree.useCall();
+                stopTotalThree.useSms();
+                stopTotalThree.useSms();
+                stopTotalThree.useSms();
+                stopTotalThree.useCall();
+                stopTotalThree.useSms();
+                stopTotalThree.useCall();
+                stopTotalThree.useSms();
+                stopTotalThree.useSms();
+                stopTotalThree.useSms();
+                stopTotalThree.useCall();
+
+                assert.equal(25.5, stopTotalThree.getTotalCost());
+                assert.equal('danger', stopTotalThree.addDangerClass());
+                assert.equal('warning', stopTotalThree.addWarningClass());
             })
         })
     })
