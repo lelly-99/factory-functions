@@ -4,5 +4,5 @@
 
 ## Click the link below to access the Unit tests for DOM
 
-* [factory function unit test with Mocha](./tests.html)
+* [factory function unit test with Mocha](/tests.html)
 
